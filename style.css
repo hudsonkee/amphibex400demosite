@@ -69,10 +69,10 @@ body {
 
 .header-banner {
     background-color: var(--brand-green) !important;
-    padding-top: 55px; /* Generous top spacing above header text */
-    padding-bottom: 0px; /* White title text touches green bottom boundary */
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-top: 55px;
+    padding-bottom: 0px;
+    padding-left: 0px; /* Removes inner offset so main-title aligns with header-inner */
+    padding-right: 0px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -84,20 +84,20 @@ body {
     font-size: clamp(2.8rem, 5.2vw, 4.5rem);
     font-weight: 800;
     letter-spacing: 2.5px;
-    line-height: 0.78;
+    line-height: 0.70; /* Tightened line height to drop letter bases flush to white edge */
     text-transform: uppercase;
     margin: 0;
+}
+
+.subtitle-bar {
+    background-color: #ffffff !important;
+    padding: 6px 0 0 0px; /* Set to 0px to align subtitle precisely with main title */
 }
 
 .weri-logo {
     max-height: 32px;
     width: auto;
     margin-bottom: 2px;
-}
-
-.subtitle-bar {
-    background-color: #ffffff !important;
-    padding: 6px 0 0 0;
 }
 
 .subtitle {
