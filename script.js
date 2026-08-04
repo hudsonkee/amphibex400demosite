@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Select all carousel instances on the page
     const carousels = document.querySelectorAll('.carousel-wrapper');
 
     carousels.forEach(carousel => {
@@ -8,16 +7,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextBtn = carousel.querySelector('.next-btn');
 
         if (track && prevBtn && nextBtn) {
-            // Click Next Button: Scroll right by 80% of current viewport width
+            // Next Button Click
             nextBtn.addEventListener('click', () => {
-                const scrollAmount = track.clientWidth * 0.8;
-                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                const firstSlide = track.querySelector('.carousel-slide');
+                const scrollAmount = firstSlide ? firstSlide.offsetWidth : track.clientWidth;
+                
+                // If near the end of the scroll container, loop back to start
+                const isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 15;
+                
+                if (isAtEnd) {
+                    track.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
             });
 
-            // Click Prev Button: Scroll left by 80% of current viewport width
+            // Previous Button Click
             prevBtn.addEventListener('click', () => {
-                const scrollAmount = track.clientWidth * 0.8;
-                track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                const firstSlide = track.querySelector('.carousel-slide');
+                const scrollAmount = firstSlide ? firstSlide.offsetWidth : track.clientWidth;
+                
+                // If at the start, loop around to the end
+                const isAtStart = track.scrollLeft <= 15;
+                
+                if (isAtStart) {
+                    track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+                } else {
+                    track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                }
             });
         }
     });
