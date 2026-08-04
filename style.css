@@ -1,117 +1,8 @@
 /* ==========================================
-   Carousel Core Mechanics & Peek Layout
-   ========================================== */
-.carousel-wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden; /* Clips overflow while keeping peeking visible inside track */
-}
-
-.carousel-track {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    width: 100%;
-    padding: 10px 0; /* Padding allows shadows/edges to render cleanly */
-}
-
-.carousel-track::-webkit-scrollbar {
-    display: none;
-}
-
-.carousel-slide {
-    scroll-snap-align: center;
-}
-
-/* Navigation Buttons */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.75);
-    color: white;
-    border: none;
-    font-size: 1.1rem;
-    width: 38px;
-    height: 38px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.carousel-btn:hover {
-    background: var(--brand-green);
-    transform: translateY(-50%) scale(1.08);
-}
-
-.prev-btn { left: 8px; }
-.next-btn { right: 8px; }
-
-/* ==========================================
-   Top Gallery (2 Main Images + Peek)
-   ========================================== */
-.top-carousel-wrapper .carousel-track {
-    gap: 15px;
-}
-
-/* 43% width ensures 2 slides fit (~86%) while 3rd slide peeks in on the right */
-.top-carousel-wrapper .carousel-slide {
-    flex: 0 0 43%;
-    height: 220px;
-}
-
-.top-carousel-wrapper .carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 4px;
-}
-
-/* ==========================================
-   Green Card Carousel (1 Main Card + Peek)
-   ========================================== */
-.inner-carousel-wrapper .carousel-track {
-    gap: 15px;
-}
-
-/* 86% width shows the main card centered with the next card peeking */
-.inner-carousel-wrapper .green-card-slide {
-    flex: 0 0 86%;
-    scroll-snap-align: center;
-    background-color: var(--brand-green);
-    color: #ffffff;
-    padding: 22px;
-    border-radius: 6px;
-    
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 20px;
-    align-items: center;
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .top-carousel-wrapper .carousel-slide {
-        flex: 0 0 75%; /* Show 1 main + peek on mobile */
-        height: 160px;
-    }
-
-    .inner-carousel-wrapper .green-card-slide {
-        flex: 0 0 90%;
-        grid-template-columns: 1fr;
-    }
-}/* ==========================================
-   Base & Colors
+   Base & Brand Colors
    ========================================== */
 :root {
-    --brand-green: #83bf26; /* Matched from Inkscape header */
+    --brand-green: #83bf26;
     --text-dark: #333333;
     --bg-light: #ffffff;
 }
@@ -120,6 +11,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border-radius: 0 !important; /* Forces all elements to have crisp square edges */
 }
 
 body {
@@ -151,7 +43,7 @@ body {
 }
 
 .main-title {
-    color: #ffffff; /* WHITE font on green banner */
+    color: #ffffff;
     font-size: clamp(2.5rem, 5vw, 4.2rem);
     font-weight: 900;
     letter-spacing: 2px;
@@ -173,7 +65,6 @@ body {
     font-size: 0.88rem;
     color: #444444;
     letter-spacing: 0.2px;
-    font-weight: normal;
 }
 
 /* ==========================================
@@ -192,7 +83,7 @@ body {
 }
 
 /* ==========================================
-   Carousel Core Mechanics & Arrows
+   Carousel Core & Button Placement
    ========================================== */
 .carousel-wrapper {
     position: relative;
@@ -206,6 +97,7 @@ body {
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     width: 100%;
+    padding: 5px 0;
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -214,21 +106,22 @@ body {
 
 .carousel-slide {
     scroll-snap-align: start;
+    flex-shrink: 0;
 }
 
+/* Button position keeps arrows inside the boundary to prevent cutoff */
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     border: none;
     font-size: 1.1rem;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
+    z-index: 20;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -243,7 +136,7 @@ body {
 .next-btn { right: 10px; }
 
 /* ==========================================
-   Top Gallery Carousel (4 Thumbnails)
+   Top Gallery (2 Images + Peeking Edge)
    ========================================== */
 .top-carousel-wrapper {
     margin-bottom: 35px;
@@ -253,9 +146,11 @@ body {
     gap: 15px;
 }
 
+/* Strictly forces 2 slides (~88%) + 3rd peeking slide (~10%) */
 .top-carousel-wrapper .carousel-slide {
-    flex: 0 0 calc(25% - 11.25px);
-    height: 165px;
+    flex: 0 0 44%;
+    width: 44%;
+    height: 220px;
 }
 
 .top-carousel-wrapper .carousel-slide img {
@@ -295,11 +190,12 @@ body {
    "WHAT CAN IT DO?" Green Card Carousel
    ========================================== */
 .inner-carousel-wrapper .carousel-track {
-    gap: 0;
+    gap: 15px;
 }
 
 .inner-carousel-wrapper .green-card-slide {
-    flex: 0 0 100%;
+    flex: 0 0 85%;
+    width: 85%;
     background-color: var(--brand-green);
     color: #ffffff;
     padding: 22px;
@@ -343,16 +239,6 @@ body {
     margin-bottom: 3px;
 }
 
-.inner-carousel-wrapper .prev-btn {
-    left: -14px;
-    border: 2px solid #ffffff;
-}
-
-.inner-carousel-wrapper .next-btn {
-    right: -14px;
-    border: 2px solid #ffffff;
-}
-
 /* ==========================================
    Specifications Section
    ========================================== */
@@ -380,7 +266,7 @@ body {
 }
 
 /* ==========================================
-   Mobile / Responsive Layout
+   Mobile Adjustments
    ========================================== */
 @media (max-width: 768px) {
     .header-banner {
@@ -390,8 +276,9 @@ body {
     }
 
     .top-carousel-wrapper .carousel-slide {
-        flex: 0 0 calc(50% - 7.5px);
-        height: 140px;
+        flex: 0 0 75%;
+        width: 75%;
+        height: 160px;
     }
 
     .grid-2col, 
@@ -399,6 +286,8 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .inner-carousel-wrapper .prev-btn { left: 5px; }
-    .inner-carousel-wrapper .next-btn { right: 5px; }
+    .inner-carousel-wrapper .green-card-slide {
+        flex: 0 0 90%;
+        width: 90%;
+    }
 }
