@@ -52,11 +52,12 @@ body {
 }
 
 /* ==========================================
-   Infinitely Full-Bleed Green Header
+   Full-Bleed & Standard Green Header
    ========================================== */
+.header,
 .header-full-bleed {
     width: 100%;
-    background-color: var(--brand-green);
+    background-color: var(--brand-green) !important;
     margin-bottom: 30px;
 }
 
@@ -67,8 +68,11 @@ body {
 }
 
 .header-banner {
-    padding-top: 55px; /* Generous space above the text */
-    padding-bottom: 0px; /* Text rests directly on the bottom edge */
+    background-color: var(--brand-green) !important;
+    padding-top: 55px; /* Generous top spacing above header text */
+    padding-bottom: 0px; /* White title text touches green bottom boundary */
+    padding-left: 30px;
+    padding-right: 30px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -76,11 +80,11 @@ body {
 
 .main-title {
     font-family: var(--font-header);
-    color: #ffffff;
+    color: #ffffff !important;
     font-size: clamp(2.8rem, 5.2vw, 4.5rem);
     font-weight: 800;
     letter-spacing: 2.5px;
-    line-height: 0.78; /* Forces white text bottom to touch green block boundary */
+    line-height: 0.78;
     text-transform: uppercase;
     margin: 0;
 }
@@ -92,7 +96,7 @@ body {
 }
 
 .subtitle-bar {
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     padding: 6px 0 0 0;
 }
 
@@ -120,24 +124,29 @@ body {
     margin-bottom: 40px;
 }
 
+/* Tightens margin specifically above "WHAT CAN IT DO?" carousel */
+.what-can-it-do-title {
+    margin-bottom: 4px !important;
+}
+
 /* ==========================================
-   "WHAT IS IT?" Section (Thinner Width & Height Match)
+   "WHAT IS IT?" Section
    ========================================== */
 .what-is-it {
-    max-width: 860px; /* Constrains section to a narrower central width */
+    max-width: 860px;
     margin: 0 auto 35px auto;
 }
 
 .what-is-it .section-title {
-    font-size: 1.35rem;
-    margin-bottom: 8px;
+    font-size: 1.85rem; /* Matches "WHAT CAN IT DO?" title size */
+    margin-bottom: 12px;
 }
 
 .what-is-it .grid-2col {
     display: grid;
-    grid-template-columns: 210px 1fr; /* Compact image column */
+    grid-template-columns: 210px 1fr;
     gap: 20px;
-    align-items: stretch; /* Stretches left image to exact height of right column */
+    align-items: stretch; /* Image height adjusts automatically to text column */
 }
 
 .what-is-it .media-column {
@@ -147,18 +156,18 @@ body {
 .what-is-it .featured-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crops image cleanly to match body text height */
+    object-fit: cover;
     display: block;
 }
 
 .what-is-it .text-column {
-    font-size: 0.76rem;
+    font-size: 0.88rem; /* Matches "WHAT CAN IT DO?" body text size */
     color: #333333;
-    line-height: 1.36;
+    line-height: 1.42;
 }
 
 .what-is-it .text-column p {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 /* ==========================================
