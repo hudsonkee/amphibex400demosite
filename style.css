@@ -76,7 +76,7 @@ body {
 
 .header-banner {
     background-color: transparent !important;
-    padding-top: 45px; /* Generous green space above title */
+    padding-top: 90px; /* Doubled space above header text */
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
@@ -135,7 +135,7 @@ body {
 }
 
 .what-can-it-do-title {
-    margin-bottom: 4px !important;
+    margin-bottom: 0px !important; /* Tightened flush against the carousel */
 }
 
 /* ==========================================
@@ -257,6 +257,7 @@ body {
    ========================================== */
 .inner-carousel-wrapper .carousel-track {
     gap: 15px;
+    padding-top: 0px; /* Removes inner carousel track offset */
 }
 
 .inner-carousel-wrapper .green-card-slide {
@@ -350,7 +351,7 @@ body {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-        padding-top: 30px;
+        padding-top: 50px;
     }
 
     .what-is-it .grid-2col {
