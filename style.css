@@ -1,0 +1,93 @@
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ------------------------
+   Carousel Core Mechanics
+------------------------ */
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Forces snapping to slides */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: none; /* Hides scrollbar on Firefox */
+}
+
+/* Hides scrollbar on Chrome/Safari */
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-slide {
+    flex: 0 0 100%; /* Each slide takes up exactly 100% of the container width */
+    scroll-snap-align: start; /* Snaps image to the start of the container */
+    object-fit: cover;
+}
+
+/* ------------------------
+   Top Hero Carousel
+------------------------ */
+.hero-section .carousel-slide {
+    height: 60vh; /* Takes up 60% of the screen height */
+    min-height: 300px;
+}
+
+/* ------------------------
+   Main Content Layout
+------------------------ */
+.content-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+/* ------------------------
+   The Green Square
+------------------------ */
+.green-square {
+    background-color: #2e7d32; /* A nice modern green */
+    width: 100%;
+    max-width: 600px; /* Forces it into a square-like box centrally */
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    color: white;
+}
+
+.square-title {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+/* Nested Carousel Adjustments */
+.inner-carousel {
+    border-radius: 8px; /* Rounds the corners of the inner image track */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.inner-carousel .carousel-slide {
+    height: 400px; /* Fixed height for the square's images */
+}
