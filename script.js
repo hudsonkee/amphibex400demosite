@@ -11,6 +11,83 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalSlides = Array.from(track.children);
         if (originalSlides.length === 0) return;
 
+        // Clone slides on both sides for infinite looping
+        originalSlides.forEach(slide => {
+            track.appendChild(slide.cloneNode(true));
+            track.insertBefore(slide.cloneNode(true), track.firstChild);
+        });
+
+        const getStep = () => {
+            const firstSlide = track.querySelector('.carousel-slide');
+            const style = window.getComputedStyle(track);
+            const gap = parseFloat(style.gap) || 0;
+            return firstSlide.offsetWidth + gap;
+        };
+
+        // Initialize position in middle clone set
+        const initPosition = () => {
+            track.style.scrollSnapType = 'none';
+            track.style.scrollBehavior = 'auto';
+            track.scrollLeft = getStep() * originalSlides.length;
+            track.style.scrollSnapType = 'x mandatory';
+            track.style.scrollBehavior = 'smooth';
+        };
+
+        setTimeout(initPosition, 50);
+
+        let isAnimating = false;
+
+        // Handles invisible jump when boundary is reached
+        const checkBoundary = () => {
+            const step = getStep();
+            const setWidth = step * originalSlides.length;
+
+            // Near left edge -> Jump right
+            if (track.scrollLeft <= step * 0.5) {
+                track.style.scrollSnapType = 'none';
+                track.style.scrollBehavior = 'auto';
+                track.scrollLeft += setWidth;
+                track.style.scrollSnapType = 'x mandatory';
+                track.style.scrollBehavior = 'smooth';
+            } 
+            // Near right edge -> Jump left
+            else if (track.scrollLeft >= setWidth * 2 - step * 0.5) {
+                track.style.scrollSnapType = 'none';
+                track.style.scrollBehavior = 'auto';
+                track.scrollLeft -= setWidth;
+                track.style.scrollSnapType = 'x mandatory';
+                track.style.scrollBehavior = 'smooth';
+            }
+            isAnimating = false;
+        };
+
+        nextBtn.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+            track.scrollBy({ left: getStep(), behavior: 'smooth' });
+            setTimeout(checkBoundary, 350);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+            track.scrollBy({ left: -getStep(), behavior: 'smooth' });
+            setTimeout(checkBoundary, 350);
+        });
+    });
+});document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.carousel-wrapper');
+
+    carousels.forEach(carousel => {
+        const track = carousel.querySelector('.carousel-track');
+        const prevBtn = carousel.querySelector('.prev-btn');
+        const nextBtn = carousel.querySelector('.next-btn');
+
+        if (!track || !prevBtn || !nextBtn) return;
+
+        const originalSlides = Array.from(track.children);
+        if (originalSlides.length === 0) return;
+
         // Clone slides to front and back for seamless infinite scrolling
         originalSlides.forEach(slide => {
             const cloneEnd = slide.cloneNode(true);
