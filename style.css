@@ -1,18 +1,8 @@
 /* ==========================================
-   Custom Font Declaration (Optional)
-   ========================================== */
-@font-face {
-    font-family: 'AmphibexCustomFont';
-    src: url('./fonts/custom-font.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* ==========================================
-   CSS Variables & Base Reset
+   Base & Brand Colors
    ========================================== */
 :root {
-    --brand-green: #83bf26; /* Matched from Inkscape design */
+    --brand-green: #83bf26; /* Exact Inkscape Green */
     --text-dark: #222222;
     --bg-light: #ffffff;
 }
@@ -31,114 +21,119 @@ body {
 }
 
 .page-container {
-    max-width: 1100px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 20px;
 }
 
 /* ==========================================
-   Header & Typography
+   Header Section
    ========================================== */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .main-title {
     color: var(--brand-green);
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-weight: 800;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     line-height: 1;
-    /* font-family: 'AmphibexCustomFont', sans-serif; */
 }
 
 .subtitle {
     font-size: 0.85rem;
-    color: #444;
-    margin-top: 5px;
+    color: #333;
+    margin-top: 6px;
 }
 
 .weri-logo {
-    max-height: 45px;
+    max-height: 42px;
     width: auto;
 }
 
 .section-title {
     color: var(--brand-green);
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 1.75rem;
+    font-weight: 800;
     margin-bottom: 15px;
+    letter-spacing: 0.5px;
 }
 
 .section {
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 /* ==========================================
-   Common Carousel Core Styles
+   Common Carousel Styles
    ========================================== */
 .carousel-wrapper {
     position: relative;
     width: 100%;
-    display: flex;
-    align-items: center;
 }
 
 .carousel-track {
     display: flex;
-    gap: 15px;
     overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
     width: 100%;
 }
 
 .carousel-track::-webkit-scrollbar {
-    display: none; /* Chrome / Safari / Edge */
+    display: none;
 }
 
 .carousel-slide {
-    flex: 0 0 auto;
     scroll-snap-align: start;
 }
 
-/* Navigation Buttons */
+/* Base Arrow Styling */
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     color: white;
     border: none;
-    font-size: 1.2rem;
-    padding: 10px 14px;
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     z-index: 10;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: background 0.2s ease;
 }
 
 .carousel-btn:hover {
-    background: rgba(131, 191, 38, 0.9);
+    background: var(--brand-green);
 }
 
 .prev-btn { left: 10px; }
 .next-btn { right: 10px; }
 
 /* ==========================================
-   Top Gallery Carousel
+   Top Gallery Carousel (4 Thumbnails per Row)
    ========================================== */
 .top-carousel-wrapper {
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
+.top-carousel-wrapper .carousel-track {
+    gap: 12px;
+}
+
+/* Displays 4 images side-by-side matching the Inkscape design */
 .top-carousel-wrapper .carousel-slide {
-    width: 240px;
-    height: 150px;
+    flex: 0 0 calc(25% - 9px);
+    height: 145px;
 }
 
 .top-carousel-wrapper .carousel-slide img {
@@ -149,13 +144,13 @@ body {
 }
 
 /* ==========================================
-   "What Is It?" Section
+   "WHAT IS IT?" Section
    ========================================== */
 .grid-2col {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 30px;
-    position: relative;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 25px;
+    align-items: start;
 }
 
 .featured-img {
@@ -165,72 +160,91 @@ body {
 }
 
 .text-column {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     position: relative;
+}
+
+.text-column p {
+    margin-bottom: 12px;
+    line-height: 1.45;
+}
+
+.cutout-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
 }
 
 .cutout-graphic {
-    width: 280px;
-    float: right;
-    margin-top: -20px;
+    width: 260px;
+    height: auto;
 }
 
 /* ==========================================
-   "What Can It Do?" Green Card Carousel
-   (Paired Image + Text Slides)
+   "WHAT CAN IT DO?" Green Card Carousel
    ========================================== */
 .inner-carousel-wrapper {
-    position: relative;
-    width: 100%;
+    border-radius: 4px;
 }
 
 .inner-carousel-wrapper .carousel-track {
-    gap: 0; /* Remove gap so cards snap seamlessly edge-to-edge */
+    gap: 0;
 }
 
 .inner-carousel-wrapper .green-card-slide {
     flex: 0 0 100%;
-    scroll-snap-align: start;
-    
     background-color: var(--brand-green);
-    color: white;
-    padding: 25px;
-    border-radius: 8px;
+    color: #ffffff;
+    padding: 22px;
     
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     gap: 25px;
     align-items: center;
 }
 
 .inner-carousel-wrapper .card-image img {
     width: 100%;
-    height: 300px;
+    height: 280px;
     object-fit: cover;
-    border-radius: 4px;
     display: block;
 }
 
 .inner-carousel-wrapper .card-text h3 {
-    font-size: 1.2rem;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: bold;
     margin-bottom: 12px;
     letter-spacing: 0.5px;
 }
 
 .inner-carousel-wrapper .card-text p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    color: #ffffff;
+    font-size: 0.88rem;
+    line-height: 1.45;
     margin-bottom: 15px;
 }
 
 .feature-list {
     list-style-type: disc;
-    padding-left: 20px;
+    padding-left: 18px;
     font-size: 0.88rem;
+    color: #ffffff;
 }
 
 .feature-list li {
-    margin-bottom: 4px;
+    margin-bottom: 3px;
+}
+
+/* Arrow position adjustments for the green card */
+.inner-carousel-wrapper .prev-btn {
+    left: -14px;
+    border: 2px solid #ffffff;
+}
+
+.inner-carousel-wrapper .next-btn {
+    right: -14px;
+    border: 2px solid #ffffff;
 }
 
 /* ==========================================
@@ -238,7 +252,7 @@ body {
    ========================================== */
 .spec-diagram {
     width: 100%;
-    max-width: 850px;
+    max-width: 800px;
     display: block;
     margin: 0 auto 20px auto;
 }
@@ -247,383 +261,35 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    font-size: 0.9rem;
-    margin-top: 20px;
+    font-size: 0.88rem;
+    margin-top: 15px;
+}
+
+.spec-list p {
+    margin-bottom: 3px;
 }
 
 .accent-logo {
-    max-height: 60px;
+    max-height: 55px;
 }
 
 /* ==========================================
-   Responsive Design (Mobile / Tablet)
+   Responsive Design
    ========================================== */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+    .top-carousel-wrapper .carousel-slide {
+        flex: 0 0 calc(50% - 6px); /* 2 images per row on mobile */
     }
 
-    .main-title {
-        font-size: 2.2rem;
-    }
-
-    .grid-2col {
-        grid-template-columns: 1fr;
-    }
-
-    .cutout-graphic {
-        float: none;
-        width: 100%;
-        margin-top: 15px;
-    }
-
+    .grid-2col, 
     .inner-carousel-wrapper .green-card-slide {
         grid-template-columns: 1fr;
-        padding: 15px;
     }
 
-    .inner-carousel-wrapper .card-image img {
-        height: 200px;
+    .cutout-wrapper {
+        justify-content: center;
     }
 
-    .spec-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-}/* Custom Font Declaration Placeholder */
-@font-face {
-    font-family: 'AmphibexCustomFont';
-    src: url('./fonts/custom-font.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-:root {
-    --brand-green: #83bf26; /* Matched from the Inkscape file */
-    --text-dark: #222222;
-    --bg-light: #ffffff;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--text-dark);
-    background-color: var(--bg-light);
-    line-height: 1.4;
-}
-
-.page-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 20px;
-}
-
-.main-title {
-    color: var(--brand-green);
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    line-height: 1;
-    /* Uncomment below line when your font file is placed in /fonts/ */
-    /* font-family: 'AmphibexCustomFont', sans-serif; */
-}
-
-.subtitle {
-    font-size: 0.85rem;
-    color: #444;
-    margin-top: 5px;
-}
-
-.weri-logo {
-    max-height: 45px;
-    width: auto;
-}
-
-/* Section Headings */
-.section-title {
-    color: var(--brand-green);
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.section {
-    margin-bottom: 40px;
-}
-
-/* Common Carousel Styles */
-.carousel-wrapper {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.carousel-track {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-    width: 100%;
-}
-
-.carousel-track::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-}
-
-.carousel-slide {
-    flex: 0 0 auto;
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Carousel Arrow Buttons */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    font-size: 1.2rem;
-    padding: 10px 14px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-    transition: background 0.2s ease;
-}
-
-.carousel-btn:hover {
-    background: rgba(131, 191, 38, 0.9);
-}
-
-.prev-btn { left: 10px; }
-.next-btn { right: 10px; }
-
-/* Top Carousel Specifics */
-.top-carousel-wrapper {
-    margin-bottom: 40px;
-}
-
-.top-carousel-wrapper .carousel-slide {
-    width: 240px;
-    height: 150px;
-}
-
-/* What is it layout */
-.grid-2col {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 30px;
-    position: relative;
-}
-
-.featured-img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.text-column {
-    font-size: 0.92rem;
-    position: relative;
-}
-
-.cutout-graphic {
-    width: 280px;
-    float: right;
-    margin-top: -20px;
-}
-
-/* Green Card Section */
-.green-card {
-    background-color: var(--brand-green);
-    color: white;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: start;
-}
-
-.inner-carousel-wrapper {
-    width: 100%;
-}
-
-.inner-carousel-wrapper .carousel-slide {
-    width: 100%;
-    height: 280px;
-}
-
-.green-card-text h3 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    letter-spacing: 0.5px;
-}
-
-.green-card-text p {
-    font-size: 0.88rem;
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-
-.feature-list {
-    list-style-type: disc;
-    padding-left: 20px;
-    font-size: 0.88rem;
-}
-
-.feature-list li {
-    margin-bottom: 4px;
-}
-
-/* Specifications Section */
-.spec-diagram {
-    width: 100%;
-    max-width: 850px;
-    display: block;
-    margin: 0 auto 20px auto;
-}
-
-.spec-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-size: 0.9rem;
-    margin-top: 20px;
-}
-
-.accent-logo {
-    max-height: 60px;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .grid-2col, .green-card {
-        grid-template-columns: 1fr;
-    }
-    
-    .cutout-graphic {
-        float: none;
-        width: 100%;
-        margin-top: 15px;
-    }
-    
-    .main-title {
-        font-size: 2.2rem;
-    }
-}/* Reset and Base Styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* ------------------------
-   Carousel Core Mechanics
------------------------- */
-.carousel {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.carousel-track {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory; /* Forces snapping to slides */
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    scrollbar-width: none; /* Hides scrollbar on Firefox */
-}
-
-/* Hides scrollbar on Chrome/Safari */
-.carousel-track::-webkit-scrollbar {
-    display: none;
-}
-
-.carousel-slide {
-    flex: 0 0 100%; /* Each slide takes up exactly 100% of the container width */
-    scroll-snap-align: start; /* Snaps image to the start of the container */
-    object-fit: cover;
-}
-
-/* ------------------------
-   Top Hero Carousel
------------------------- */
-.hero-section .carousel-slide {
-    height: 60vh; /* Takes up 60% of the screen height */
-    min-height: 300px;
-}
-
-/* ------------------------
-   Main Content Layout
------------------------- */
-.content-section {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-h1 {
-    margin-bottom: 10px;
-}
-
-/* ------------------------
-   The Green Square
------------------------- */
-.green-square {
-    background-color: #2e7d32; /* A nice modern green */
-    width: 100%;
-    max-width: 600px; /* Forces it into a square-like box centrally */
-    margin: 60px auto;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    color: white;
-}
-
-.square-title {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-}
-
-/* Nested Carousel Adjustments */
-.inner-carousel {
-    border-radius: 8px; /* Rounds the corners of the inner image track */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.inner-carousel .carousel-slide {
-    height: 400px; /* Fixed height for the square's images */
+    .inner-carousel-wrapper .prev-btn { left: 5px; }
+    .inner-carousel-wrapper .next-btn { right: 5px; }
 }
