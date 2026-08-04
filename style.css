@@ -1,9 +1,9 @@
 /* ==========================================
-   Base & Brand Colors
+   Base & Colors
    ========================================== */
 :root {
-    --brand-green: #83bf26; /* Exact Inkscape Green */
-    --text-dark: #222222;
+    --brand-green: #83bf26; /* Matched from Inkscape header */
+    --text-dark: #333333;
     --bg-light: #ffffff;
 }
 
@@ -23,38 +23,53 @@ body {
 .page-container {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 15px 30px 15px;
 }
 
 /* ==========================================
-   Header Section
+   Header Banner & Subtitle
    ========================================== */
 .header {
+    margin-bottom: 25px;
+}
+
+.header-banner {
+    background-color: var(--brand-green);
+    padding: 18px 25px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 20px;
+    align-items: center;
 }
 
 .main-title {
-    color: var(--brand-green);
-    font-size: 3.2rem;
-    font-weight: 800;
-    letter-spacing: 1px;
+    color: #ffffff; /* WHITE font on green banner */
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 900;
+    letter-spacing: 2px;
     line-height: 1;
-}
-
-.subtitle {
-    font-size: 0.85rem;
-    color: #333;
-    margin-top: 6px;
+    text-transform: uppercase;
 }
 
 .weri-logo {
-    max-height: 42px;
+    max-height: 52px;
     width: auto;
 }
 
+.subtitle-bar {
+    background-color: #ffffff;
+    padding: 8px 5px 0 5px;
+}
+
+.subtitle {
+    font-size: 0.88rem;
+    color: #444444;
+    letter-spacing: 0.2px;
+    font-weight: normal;
+}
+
+/* ==========================================
+   Section Headings
+   ========================================== */
 .section-title {
     color: var(--brand-green);
     font-size: 1.75rem;
@@ -68,7 +83,7 @@ body {
 }
 
 /* ==========================================
-   Common Carousel Styles
+   Carousel Core Mechanics & Arrows
    ========================================== */
 .carousel-wrapper {
     position: relative;
@@ -92,7 +107,6 @@ body {
     scroll-snap-align: start;
 }
 
-/* Base Arrow Styling */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -120,20 +134,19 @@ body {
 .next-btn { right: 10px; }
 
 /* ==========================================
-   Top Gallery Carousel (4 Thumbnails per Row)
+   Top Gallery Carousel (4 Thumbnails)
    ========================================== */
 .top-carousel-wrapper {
     margin-bottom: 35px;
 }
 
 .top-carousel-wrapper .carousel-track {
-    gap: 12px;
+    gap: 15px;
 }
 
-/* Displays 4 images side-by-side matching the Inkscape design */
 .top-carousel-wrapper .carousel-slide {
-    flex: 0 0 calc(25% - 9px);
-    height: 145px;
+    flex: 0 0 calc(25% - 11.25px);
+    height: 165px;
 }
 
 .top-carousel-wrapper .carousel-slide img {
@@ -148,7 +161,7 @@ body {
    ========================================== */
 .grid-2col {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: 1fr 1.6fr;
     gap: 25px;
     align-items: start;
 }
@@ -160,33 +173,18 @@ body {
 }
 
 .text-column {
-    font-size: 0.9rem;
-    position: relative;
+    font-size: 0.88rem;
+    color: #333;
 }
 
 .text-column p {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     line-height: 1.45;
-}
-
-.cutout-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-}
-
-.cutout-graphic {
-    width: 260px;
-    height: auto;
 }
 
 /* ==========================================
    "WHAT CAN IT DO?" Green Card Carousel
    ========================================== */
-.inner-carousel-wrapper {
-    border-radius: 4px;
-}
-
 .inner-carousel-wrapper .carousel-track {
     gap: 0;
 }
@@ -236,7 +234,6 @@ body {
     margin-bottom: 3px;
 }
 
-/* Arrow position adjustments for the green card */
 .inner-carousel-wrapper .prev-btn {
     left: -14px;
     border: 2px solid #ffffff;
@@ -274,20 +271,23 @@ body {
 }
 
 /* ==========================================
-   Responsive Design
+   Mobile / Responsive Layout
    ========================================== */
 @media (max-width: 768px) {
+    .header-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
     .top-carousel-wrapper .carousel-slide {
-        flex: 0 0 calc(50% - 6px); /* 2 images per row on mobile */
+        flex: 0 0 calc(50% - 7.5px);
+        height: 140px;
     }
 
     .grid-2col, 
     .inner-carousel-wrapper .green-card-slide {
         grid-template-columns: 1fr;
-    }
-
-    .cutout-wrapper {
-        justify-content: center;
     }
 
     .inner-carousel-wrapper .prev-btn { left: 5px; }
