@@ -11,6 +11,326 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border-radius: 0 !important; /* Crisp square edges */
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.4;
+}
+
+/* Increased left/right page margins across all content */
+.page-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 50px 40px 50px; 
+}
+
+/* ==========================================
+   Header Banner & Subtitle Alignment
+   ========================================== */
+.header {
+    margin-bottom: 30px;
+}
+
+.header-banner {
+    background-color: var(--brand-green);
+    padding: 18px 30px 0px 30px; /* Zero bottom padding so text rests on edge */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align title and logo to bottom */
+}
+
+/* Title touches the bottom edge of the green banner */
+.main-title {
+    color: #ffffff;
+    font-size: clamp(2.8rem, 5.2vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    line-height: 0.85; 
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Smaller WERI logo aligned near the bottom */
+.weri-logo {
+    max-height: 34px; 
+    width: auto;
+    margin-bottom: 4px;
+}
+
+/* Subtitle left-aligned directly with the AMPHIBEX 400 text */
+.subtitle-bar {
+    background-color: #ffffff;
+    padding: 6px 0 0 30px; /* Matches 30px header-banner inset */
+}
+
+.subtitle {
+    font-size: 0.82rem;
+    color: #444444;
+    letter-spacing: 0.1px;
+}
+
+/* ==========================================
+   Section Headings
+   ========================================== */
+.section-title {
+    color: var(--brand-green);
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+/* ==========================================
+   "WHAT IS IT?" Section (Scaled Down & Exact Image Height)
+   ========================================== */
+.what-is-it {
+    margin-bottom: 35px;
+}
+
+/* Smaller heading for What Is It */
+.what-is-it .section-title {
+    font-size: 1.45rem;
+    margin-bottom: 10px;
+}
+
+/* Stretches columns to equal height */
+.what-is-it .grid-2col {
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    gap: 25px;
+    align-items: stretch; 
+}
+
+.what-is-it .media-column {
+    height: 100%;
+}
+
+/* Image fills exact height of the adjacent text paragraph */
+.what-is-it .featured-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* Scaled down text size for entire section */
+.what-is-it .text-column {
+    font-size: 0.78rem; 
+    color: #333333;
+    line-height: 1.38;
+}
+
+.what-is-it .text-column p {
+    margin-bottom: 10px;
+}
+
+/* ==========================================
+   Carousel Core Mechanics & Arrows
+   ========================================== */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-slide {
+    flex-shrink: 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.carousel-btn:hover {
+    background: var(--brand-green);
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* ==========================================
+   Top Gallery Carousel (2 Main + Peek Edge)
+   ========================================== */
+.top-carousel-wrapper {
+    margin-bottom: 35px;
+}
+
+.top-carousel-wrapper .carousel-track {
+    gap: 15px;
+}
+
+.top-carousel-wrapper .carousel-slide {
+    flex: 0 0 44%;
+    width: 44%;
+    height: 220px;
+}
+
+.top-carousel-wrapper .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ==========================================
+   "WHAT CAN IT DO?" Green Card Carousel
+   ========================================== */
+.inner-carousel-wrapper .carousel-track {
+    gap: 15px;
+}
+
+.inner-carousel-wrapper .green-card-slide {
+    flex: 0 0 85%;
+    width: 85%;
+    background-color: var(--brand-green);
+    color: #ffffff;
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 25px;
+    align-items: center;
+}
+
+.inner-carousel-wrapper .card-image img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.inner-carousel-wrapper .card-text h3 {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.inner-carousel-wrapper .card-text p {
+    color: #ffffff;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    margin-bottom: 15px;
+}
+
+.feature-list {
+    list-style-type: disc;
+    padding-left: 18px;
+    font-size: 0.88rem;
+    color: #ffffff;
+}
+
+.feature-list li {
+    margin-bottom: 3px;
+}
+
+/* ==========================================
+   Specifications Section
+   ========================================== */
+.spec-diagram {
+    width: 100%;
+    max-width: 800px;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.spec-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 0.88rem;
+    margin-top: 15px;
+}
+
+.spec-list p {
+    margin-bottom: 3px;
+}
+
+.accent-logo {
+    max-height: 55px;
+}
+
+/* ==========================================
+   Mobile / Responsive Layout
+   ========================================== */
+@media (max-width: 768px) {
+    .page-container {
+        padding: 0 20px 30px 20px;
+    }
+
+    .header-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+
+    .subtitle-bar {
+        padding-left: 0;
+    }
+
+    .what-is-it .grid-2col {
+        grid-template-columns: 1fr;
+    }
+
+    .top-carousel-wrapper .carousel-slide {
+        flex: 0 0 75%;
+        width: 75%;
+        height: 160px;
+    }
+
+    .inner-carousel-wrapper .green-card-slide {
+        flex: 0 0 90%;
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
+}/* ==========================================
+   Base Reset & Brand Colors
+   ========================================== */
+:root {
+    --brand-green: #83bf26;
+    --text-dark: #333333;
+    --bg-light: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     border-radius: 0 !important; /* Square edges across all elements */
 }
 
