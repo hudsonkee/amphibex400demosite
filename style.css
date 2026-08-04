@@ -94,7 +94,7 @@ body {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+    /* Removed scroll-snap-type to prevent animation stutter */
     scrollbar-width: none;
     width: 100%;
     padding: 5px 0;
