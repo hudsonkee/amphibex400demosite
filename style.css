@@ -5,14 +5,14 @@
 
 @font-face {
     font-family: 'CustomHeaderFont';
-    src: url('fonts/YourHeaderFont.otf') format('opentype');
+    src: url('fonts/HW110.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'CustomSpecsFont';
-    src: url('fonts/YourSpecsFont.ttf') format('truetype');
+    src: url('fonts/HWMono.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
