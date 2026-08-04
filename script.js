@@ -12,64 +12,58 @@ document.addEventListener('DOMContentLoaded', () => {
         const count = originalSlides.length;
         if (count === 0) return;
 
-        // Clone slides: Append a set to the end, Prepend a set to the front
-        originalSlides.forEach(slide => {
-            track.appendChild(slide.cloneNode(true));
-        });
-        originalSlides.slice().reverse().forEach(slide => {
-            track.insertBefore(slide.cloneNode(true), track.firstChild);
-        });
+        // Clone slides: Append one full set to end, prepend one set to start
+        originalSlides.forEach(slide => track.appendChild(slide.cloneNode(true)));
+        originalSlides.slice().reverse().forEach(slide => track.insertBefore(slide.cloneNode(true), track.firstChild));
 
-        // Helper to get total step distance (slide width + gap)
         const getStep = () => {
             const firstSlide = track.querySelector('.carousel-slide');
-            const style = window.getComputedStyle(track);
-            const gap = parseFloat(style.gap) || 0;
+            const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
             return firstSlide.offsetWidth + gap;
         };
 
-        let currentIndex = count; // Start at the first original slide
+        let currentIndex = count; // Start at first slide of original middle set
+
+        // Instant jump with no animation
+        const jumpToIndex = (index) => {
+            track.style.scrollBehavior = 'auto';
+            track.scrollLeft = index * getStep();
+        };
+
+        // Smooth scroll for button presses
+        const animateToIndex = (index) => {
+            track.style.scrollBehavior = 'smooth';
+            track.scrollLeft = index * getStep();
+        };
+
+        // Initialize position
+        setTimeout(() => jumpToIndex(currentIndex), 50);
+        window.addEventListener('resize', () => jumpToIndex(currentIndex));
+
         let isAnimating = false;
 
-        const scrollToIndex = (index, smooth = true) => {
-            const step = getStep();
-            track.scrollTo({
-                left: index * step,
-                behavior: smooth ? 'smooth' : 'auto'
-            });
-        };
+        // Reset position silently once smooth scroll finishes
+        const handleScrollEnd = () => {
+            if (!isAnimating) return;
 
-        // Initialize starting position
-        const init = () => {
-            scrollToIndex(currentIndex, false);
-        };
-
-        setTimeout(init, 50);
-        window.addEventListener('resize', init);
-
-        // Seamless Jump Handler when reaching boundary
-        const handleLoop = () => {
             if (currentIndex >= count * 2) {
                 currentIndex -= count;
-                scrollToIndex(currentIndex, false);
+                jumpToIndex(currentIndex);
             } else if (currentIndex < count) {
                 currentIndex += count;
-                scrollToIndex(currentIndex, false);
+                jumpToIndex(currentIndex);
             }
             isAnimating = false;
         };
 
-        // Listen for scroll finish to silently reposition loop
         if ('onscrollend' in window) {
-            track.addEventListener('scrollend', () => {
-                if (isAnimating) handleLoop();
-            });
+            track.addEventListener('scrollend', handleScrollEnd);
         } else {
-            let scrollTimeout;
+            let timer;
             track.addEventListener('scroll', () => {
                 if (!isAnimating) return;
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(handleLoop, 150);
+                clearTimeout(timer);
+                timer = setTimeout(handleScrollEnd, 150);
             });
         }
 
@@ -77,14 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isAnimating) return;
             isAnimating = true;
             currentIndex++;
-            scrollToIndex(currentIndex, true);
+            animateToIndex(currentIndex);
         });
 
         prevBtn.addEventListener('click', () => {
             if (isAnimating) return;
             isAnimating = true;
             currentIndex--;
-            scrollToIndex(currentIndex, true);
+            animateToIndex(currentIndex);
         });
     });
 });
