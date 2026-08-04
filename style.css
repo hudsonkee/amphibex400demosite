@@ -1,27 +1,24 @@
 /* ==========================================
    Font Imports & Custom Font Definitions
    ========================================== */
-/* 1. Google Font: IBM Plex Sans */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
-/* 2. Custom OTF Font for Headings */
 @font-face {
     font-family: 'CustomHeaderFont';
-    src: url('fonts/HW110.otf') format('opentype');
+    src: url('fonts/YourHeaderFont.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
-/* 3. Custom TTF Font for Subtitle & Tech Specs */
 @font-face {
     font-family: 'CustomSpecsFont';
-    src: url('fonts/HWMono.ttf') format('truetype');
+    src: url('fonts/YourSpecsFont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 /* ==========================================
-   Base Reset & Brand Variables
+   Base Reset & Variables
    ========================================== */
 :root {
     --brand-green: #83bf26;
@@ -37,7 +34,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border-radius: 0 !important; /* Crisp square edges everywhere */
+    border-radius: 0 !important; /* Crisp square edges */
 }
 
 body {
@@ -45,9 +42,9 @@ body {
     color: var(--text-dark);
     background-color: var(--bg-light);
     line-height: 1.4;
+    overflow-x: hidden;
 }
 
-/* Container margins away from left/right edges */
 .page-container {
     max-width: 1140px;
     margin: 0 auto;
@@ -55,18 +52,26 @@ body {
 }
 
 /* ==========================================
-   Header Banner & Subtitle Alignment
+   Infinitely Full-Bleed Green Header
    ========================================== */
-.header {
+.header-full-bleed {
+    width: 100%;
+    background-color: var(--brand-green);
     margin-bottom: 30px;
 }
 
+.header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
 .header-banner {
-    background-color: var(--brand-green);
-    padding: 18px 30px 0px 30px; /* Zero bottom padding so title rests on edge */
+    padding-top: 55px; /* Generous space above the text */
+    padding-bottom: 0px; /* Text rests directly on the bottom edge */
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Align title and logo to bottom */
+    align-items: flex-end;
 }
 
 .main-title {
@@ -75,21 +80,20 @@ body {
     font-size: clamp(2.8rem, 5.2vw, 4.5rem);
     font-weight: 800;
     letter-spacing: 2.5px;
-    line-height: 0.85;
+    line-height: 0.78; /* Forces white text bottom to touch green block boundary */
     text-transform: uppercase;
     margin: 0;
 }
 
 .weri-logo {
-    max-height: 34px;
+    max-height: 32px;
     width: auto;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
-/* Left-aligned to match AMPHIBEX 400 text inset */
 .subtitle-bar {
     background-color: #ffffff;
-    padding: 6px 0 0 30px;
+    padding: 6px 0 0 0;
 }
 
 .subtitle {
@@ -117,22 +121,23 @@ body {
 }
 
 /* ==========================================
-   "WHAT IS IT?" Section (Scaled Down & Exact Image Height)
+   "WHAT IS IT?" Section (Thinner Width & Height Match)
    ========================================== */
 .what-is-it {
-    margin-bottom: 35px;
+    max-width: 860px; /* Constrains section to a narrower central width */
+    margin: 0 auto 35px auto;
 }
 
 .what-is-it .section-title {
-    font-size: 1.45rem;
-    margin-bottom: 10px;
+    font-size: 1.35rem;
+    margin-bottom: 8px;
 }
 
 .what-is-it .grid-2col {
     display: grid;
-    grid-template-columns: 290px 1fr;
-    gap: 25px;
-    align-items: stretch; /* Stretches columns to equal height */
+    grid-template-columns: 210px 1fr; /* Compact image column */
+    gap: 20px;
+    align-items: stretch; /* Stretches left image to exact height of right column */
 }
 
 .what-is-it .media-column {
@@ -142,18 +147,18 @@ body {
 .what-is-it .featured-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Fills exact height of adjacent text paragraph */
+    object-fit: cover; /* Crops image cleanly to match body text height */
     display: block;
 }
 
 .what-is-it .text-column {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: #333333;
-    line-height: 1.38;
+    line-height: 1.36;
 }
 
 .what-is-it .text-column p {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 /* ==========================================
@@ -314,22 +319,20 @@ body {
 }
 
 /* ==========================================
-   Mobile / Responsive Layout
+   Mobile Adjustments
    ========================================== */
 @media (max-width: 768px) {
+    .header-inner,
     .page-container {
-        padding: 0 20px 30px 20px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .header-banner {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-        padding-bottom: 10px;
-    }
-
-    .subtitle-bar {
-        padding-left: 0;
+        padding-top: 30px;
     }
 
     .what-is-it .grid-2col {
