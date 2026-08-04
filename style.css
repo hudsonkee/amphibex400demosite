@@ -52,12 +52,12 @@ body {
 }
 
 /* ==========================================
-   Full-Bleed & Standard Green Header
+   Full-Bleed Header & Baseline Alignment
    ========================================== */
-.header,
-.header-full-bleed {
+.header-full-bleed,
+.header {
     width: 100%;
-    background-color: var(--brand-green) !important;
+    background-color: var(--brand-green);
     margin-bottom: 30px;
 }
 
@@ -68,14 +68,14 @@ body {
 }
 
 .header-banner {
-    background-color: var(--brand-green) !important;
-    padding-top: 55px;
+    background-color: transparent !important;
+    padding-top: 50px; /* Generous green spacing above title */
     padding-bottom: 0px;
-    padding-left: 0px; /* Removes inner offset so main-title aligns with header-inner */
+    padding-left: 0px;
     padding-right: 0px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-end; /* Baseline locks title and logo to bottom */
 }
 
 .main-title {
@@ -83,21 +83,21 @@ body {
     color: #ffffff !important;
     font-size: clamp(2.8rem, 5.2vw, 4.5rem);
     font-weight: 800;
-    letter-spacing: 2.5px;
-    line-height: 0.70; /* Tightened line height to drop letter bases flush to white edge */
-    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 0.72; /* Drops letter bases flush to green bottom edge */
     margin: 0;
-}
-
-.subtitle-bar {
-    background-color: #ffffff !important;
-    padding: 6px 0 0 0px; /* Set to 0px to align subtitle precisely with main title */
+    display: block;
 }
 
 .weri-logo {
-    max-height: 32px;
+    max-height: 36px;
     width: auto;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
+}
+
+.subtitle-bar {
+    background-color: #ffffff;
+    padding: 8px 0 0 0px; /* Aligns subtitle precisely to left of main title */
 }
 
 .subtitle {
@@ -105,6 +105,7 @@ body {
     font-size: 0.82rem;
     color: #444444;
     letter-spacing: 0.1px;
+    margin: 0;
 }
 
 /* ==========================================
