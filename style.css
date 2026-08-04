@@ -1,31 +1,57 @@
 /* ==========================================
-   Base Reset & Brand Colors
+   Font Imports & Custom Font Definitions
+   ========================================== */
+/* 1. Google Font: IBM Plex Sans */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* 2. Custom OTF Font for Headings */
+@font-face {
+    font-family: 'CustomHeaderFont';
+    src: url('fonts/HW110.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 3. Custom TTF Font for Subtitle & Tech Specs */
+@font-face {
+    font-family: 'CustomSpecsFont';
+    src: url('fonts/HWMono.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ==========================================
+   Base Reset & Brand Variables
    ========================================== */
 :root {
     --brand-green: #83bf26;
     --text-dark: #333333;
     --bg-light: #ffffff;
+
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-header: 'CustomHeaderFont', sans-serif;
+    --font-subtitle-specs: 'CustomSpecsFont', sans-serif;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border-radius: 0 !important; /* Crisp square edges */
+    border-radius: 0 !important; /* Crisp square edges everywhere */
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-body);
     color: var(--text-dark);
     background-color: var(--bg-light);
     line-height: 1.4;
 }
 
-/* Increased left/right page margins across all content */
+/* Container margins away from left/right edges */
 .page-container {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 50px 40px 50px; 
+    padding: 0 50px 40px 50px;
 }
 
 /* ==========================================
@@ -37,37 +63,37 @@ body {
 
 .header-banner {
     background-color: var(--brand-green);
-    padding: 18px 30px 0px 30px; /* Zero bottom padding so text rests on edge */
+    padding: 18px 30px 0px 30px; /* Zero bottom padding so title rests on edge */
     display: flex;
     justify-content: space-between;
     align-items: flex-end; /* Align title and logo to bottom */
 }
 
-/* Title touches the bottom edge of the green banner */
 .main-title {
+    font-family: var(--font-header);
     color: #ffffff;
     font-size: clamp(2.8rem, 5.2vw, 4.5rem);
     font-weight: 800;
     letter-spacing: 2.5px;
-    line-height: 0.85; 
+    line-height: 0.85;
     text-transform: uppercase;
     margin: 0;
 }
 
-/* Smaller WERI logo aligned near the bottom */
 .weri-logo {
-    max-height: 34px; 
+    max-height: 34px;
     width: auto;
     margin-bottom: 4px;
 }
 
-/* Subtitle left-aligned directly with the AMPHIBEX 400 text */
+/* Left-aligned to match AMPHIBEX 400 text inset */
 .subtitle-bar {
     background-color: #ffffff;
-    padding: 6px 0 0 30px; /* Matches 30px header-banner inset */
+    padding: 6px 0 0 30px;
 }
 
 .subtitle {
+    font-family: var(--font-subtitle-specs);
     font-size: 0.82rem;
     color: #444444;
     letter-spacing: 0.1px;
@@ -77,6 +103,7 @@ body {
    Section Headings
    ========================================== */
 .section-title {
+    font-family: var(--font-header);
     color: var(--brand-green);
     font-size: 1.85rem;
     font-weight: 700;
@@ -96,35 +123,31 @@ body {
     margin-bottom: 35px;
 }
 
-/* Smaller heading for What Is It */
 .what-is-it .section-title {
     font-size: 1.45rem;
     margin-bottom: 10px;
 }
 
-/* Stretches columns to equal height */
 .what-is-it .grid-2col {
     display: grid;
     grid-template-columns: 290px 1fr;
     gap: 25px;
-    align-items: stretch; 
+    align-items: stretch; /* Stretches columns to equal height */
 }
 
 .what-is-it .media-column {
     height: 100%;
 }
 
-/* Image fills exact height of the adjacent text paragraph */
 .what-is-it .featured-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover; /* Fills exact height of adjacent text paragraph */
     display: block;
 }
 
-/* Scaled down text size for entire section */
 .what-is-it .text-column {
-    font-size: 0.78rem; 
+    font-size: 0.78rem;
     color: #333333;
     line-height: 1.38;
 }
@@ -183,7 +206,7 @@ body {
 .next-btn { right: 10px; }
 
 /* ==========================================
-   Top Gallery Carousel (2 Main + Peek Edge)
+   Top Gallery Carousel (2 Main + Peeking Edge)
    ========================================== */
 .top-carousel-wrapper {
     margin-bottom: 35px;
@@ -233,6 +256,7 @@ body {
 }
 
 .inner-carousel-wrapper .card-text h3 {
+    font-family: var(--font-header);
     color: #ffffff;
     font-size: 1.25rem;
     font-weight: bold;
@@ -269,11 +293,16 @@ body {
 }
 
 .spec-footer {
+    font-family: var(--font-subtitle-specs);
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     font-size: 0.88rem;
     margin-top: 15px;
+}
+
+.spec-list {
+    font-family: var(--font-subtitle-specs);
 }
 
 .spec-list p {
