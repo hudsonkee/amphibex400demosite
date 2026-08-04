@@ -54,13 +54,20 @@ body {
 /* ==========================================
    Full-Bleed Header & Baseline Alignment
    ========================================== */
-.header-full-bleed,
-.header {
+.site-header {
     width: 100%;
-    background-color: var(--brand-green);
     margin-bottom: 30px;
+    background-color: transparent;
 }
 
+/* Green top box spans edge-to-edge */
+.header-green-bar {
+    width: 100%;
+    background-color: var(--brand-green);
+    overflow: hidden;
+}
+
+/* Centered container keeping margins identical to body content */
 .header-inner {
     max-width: 1140px;
     margin: 0 auto;
@@ -69,34 +76,36 @@ body {
 
 .header-banner {
     background-color: transparent !important;
-    padding-top: 50px; /* Generous green spacing above title */
+    padding-top: 45px; /* Generous green space above title */
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Baseline locks title and logo to bottom */
+    align-items: flex-end;
 }
 
+/* Forces white text glyphs flush to bottom of green box */
 .main-title {
     font-family: var(--font-header);
     color: #ffffff !important;
     font-size: clamp(2.8rem, 5.2vw, 4.5rem);
     font-weight: 800;
     letter-spacing: 2px;
-    line-height: 0.72; /* Drops letter bases flush to green bottom edge */
-    margin: 0;
+    line-height: 0.68;
+    margin: 0 0 -6px 0;
     display: block;
 }
 
 .weri-logo {
     max-height: 36px;
     width: auto;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 }
 
+/* Subtitle sits cleanly on pure white background */
 .subtitle-bar {
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     padding: 8px 0 0 0px; /* Aligns subtitle precisely to left of main title */
 }
 
@@ -125,7 +134,6 @@ body {
     margin-bottom: 40px;
 }
 
-/* Tightens margin specifically above "WHAT CAN IT DO?" carousel */
 .what-can-it-do-title {
     margin-bottom: 4px !important;
 }
@@ -139,7 +147,7 @@ body {
 }
 
 .what-is-it .section-title {
-    font-size: 1.85rem; /* Matches "WHAT CAN IT DO?" title size */
+    font-size: 1.85rem;
     margin-bottom: 12px;
 }
 
@@ -147,7 +155,7 @@ body {
     display: grid;
     grid-template-columns: 210px 1fr;
     gap: 20px;
-    align-items: stretch; /* Image height adjusts automatically to text column */
+    align-items: stretch;
 }
 
 .what-is-it .media-column {
@@ -162,7 +170,7 @@ body {
 }
 
 .what-is-it .text-column {
-    font-size: 0.88rem; /* Matches "WHAT CAN IT DO?" body text size */
+    font-size: 0.88rem;
     color: #333333;
     line-height: 1.42;
 }
@@ -221,7 +229,7 @@ body {
 .next-btn { right: 10px; }
 
 /* ==========================================
-   Top Gallery Carousel (2 Main + Peeking Edge)
+   Top Gallery Carousel
    ========================================== */
 .top-carousel-wrapper {
     margin-bottom: 35px;
