@@ -93,8 +93,7 @@ body {
 .carousel-track {
     display: flex;
     overflow-x: auto;
-    scroll-behavior: smooth;
-    /* Removed scroll-snap-type to prevent animation stutter */
+    /* scroll-behavior: smooth;  <-- REMOVE THIS LINE */
     scrollbar-width: none;
     width: 100%;
     padding: 5px 0;
