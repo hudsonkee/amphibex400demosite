@@ -1,5 +1,5 @@
 /* ==========================================
-   Base & Brand Colors
+   Base Reset & Brand Colors
    ========================================== */
 :root {
     --brand-green: #83bf26;
@@ -11,7 +11,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border-radius: 0 !important; /* Forces all elements to have crisp square edges */
+    border-radius: 0 !important; /* Square edges across all elements */
 }
 
 body {
@@ -31,12 +31,12 @@ body {
    Header Banner & Subtitle
    ========================================== */
 .header {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .header-banner {
     background-color: var(--brand-green);
-    padding: 18px 25px;
+    padding: 18px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,27 +44,27 @@ body {
 
 .main-title {
     color: #ffffff;
-    font-size: clamp(2.5rem, 5vw, 4.2rem);
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-size: clamp(2.8rem, 5.2vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: 2.5px;
     line-height: 1;
     text-transform: uppercase;
 }
 
 .weri-logo {
-    max-height: 52px;
+    max-height: 48px;
     width: auto;
 }
 
 .subtitle-bar {
     background-color: #ffffff;
-    padding: 8px 5px 0 5px;
+    padding: 6px 0 0 2px;
 }
 
 .subtitle {
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     color: #444444;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.1px;
 }
 
 /* ==========================================
@@ -72,18 +72,19 @@ body {
    ========================================== */
 .section-title {
     color: var(--brand-green);
-    font-size: 1.75rem;
-    font-weight: 800;
-    margin-bottom: 15px;
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin-bottom: 14px;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .section {
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 
 /* ==========================================
-   Carousel Core & Button Placement
+   Carousel Core Mechanics & Arrows
    ========================================== */
 .carousel-wrapper {
     position: relative;
@@ -93,7 +94,6 @@ body {
 .carousel-track {
     display: flex;
     overflow-x: auto;
-    /* scroll-behavior: smooth;  <-- REMOVE THIS LINE */
     scrollbar-width: none;
     width: 100%;
     padding: 5px 0;
@@ -104,11 +104,9 @@ body {
 }
 
 .carousel-slide {
-    scroll-snap-align: start;
     flex-shrink: 0;
 }
 
-/* Button position keeps arrows inside the boundary to prevent cutoff */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -135,7 +133,7 @@ body {
 .next-btn { right: 10px; }
 
 /* ==========================================
-   Top Gallery (2 Images + Peeking Edge)
+   Top Gallery Carousel (2 Main + Peek Edge)
    ========================================== */
 .top-carousel-wrapper {
     margin-bottom: 35px;
@@ -145,7 +143,6 @@ body {
     gap: 15px;
 }
 
-/* Strictly forces 2 slides (~88%) + 3rd peeking slide (~10%) */
 .top-carousel-wrapper .carousel-slide {
     flex: 0 0 44%;
     width: 44%;
@@ -164,25 +161,26 @@ body {
    ========================================== */
 .grid-2col {
     display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 25px;
+    grid-template-columns: 310px 1fr;
+    gap: 30px;
     align-items: start;
 }
 
 .featured-img {
     width: 100%;
     height: auto;
+    object-fit: cover;
     display: block;
 }
 
 .text-column {
-    font-size: 0.88rem;
-    color: #333;
+    font-size: 0.85rem;
+    color: #333333;
+    line-height: 1.42;
 }
 
 .text-column p {
     margin-bottom: 14px;
-    line-height: 1.45;
 }
 
 /* ==========================================
@@ -198,7 +196,6 @@ body {
     background-color: var(--brand-green);
     color: #ffffff;
     padding: 22px;
-    
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: 25px;
@@ -265,7 +262,7 @@ body {
 }
 
 /* ==========================================
-   Mobile Adjustments
+   Mobile / Responsive Layout
    ========================================== */
 @media (max-width: 768px) {
     .header-banner {
@@ -274,19 +271,19 @@ body {
         gap: 10px;
     }
 
+    .grid-2col {
+        grid-template-columns: 1fr;
+    }
+
     .top-carousel-wrapper .carousel-slide {
         flex: 0 0 75%;
         width: 75%;
         height: 160px;
     }
 
-    .grid-2col, 
-    .inner-carousel-wrapper .green-card-slide {
-        grid-template-columns: 1fr;
-    }
-
     .inner-carousel-wrapper .green-card-slide {
         flex: 0 0 90%;
         width: 90%;
+        grid-template-columns: 1fr;
     }
 }
